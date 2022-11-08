@@ -5,8 +5,8 @@ defmodule Api_Brecht_De_BoeckR0838388.OrderProductContext.OrderProduct do
   alias Api_Brecht_De_BoeckR0838388.GamesContext.Game
 
   schema("order_product") do
-    belongs_to(:order_id, Order)
-    belongs_to(:product_id, Game)
+    belongs_to(:order, Order)
+    belongs_to(:product, Game)
   end
 
   def changeset(order_product, attrs) do

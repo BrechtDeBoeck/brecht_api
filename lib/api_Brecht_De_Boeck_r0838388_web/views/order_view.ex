@@ -2,7 +2,7 @@ defmodule Api_Brecht_De_BoeckR0838388Web.OrderView do
   use Api_Brecht_De_BoeckR0838388Web, :view
 
   alias Api_Brecht_De_BoeckR0838388Web.OrderView
-  alias Api_Brecht_De_BoeckR0838388Web.ProductView
+  alias Api_Brecht_De_BoeckR0838388Web.GameView
 
   def render("list.json", %{orders: orders}) do
     render_many(orders, OrderView, "order.json")
@@ -13,7 +13,7 @@ defmodule Api_Brecht_De_BoeckR0838388Web.OrderView do
       id: order.id,
       email: order.email,
       date: order.date,
-      products: render_many(order.products, ProductView, "product.json")
+      products: render_many(order.products, GameView, "product.json", as: :product)
     }
   end
 

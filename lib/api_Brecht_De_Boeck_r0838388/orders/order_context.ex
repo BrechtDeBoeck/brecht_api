@@ -3,19 +3,22 @@ defmodule Api_Brecht_De_BoeckR0838388.OrderContext do
 
   alias __MODULE__.Order
   alias Api_Brecht_De_BoeckR0838388.Repo
+  alias Api_Brecht_De_BoeckR0838388.OrderProductContext
+  alias Api_Brecht_De_BoeckR0838388.GamesContext.Game
 
   def change_order(%Order{} = order) do
     order |> Order.changeset(%{})
   end
 
-  def create_order(attrs) do
+  def create_order(%{"email" => email, "products" => products}) do
     %Order{}
-    |> Order.changeset(attrs)
-    |> Repo.insert()
+    |> Order.changeset(%{email: email})
+    |> Repo.insert!()
+    |> add_products_to_order(products)
   end
 
   def list_orders() do
-    from(o in Order, preload: [order_products: :products])
+    from(o in Order, preload: [:products])
     |> Repo.all()
   end
 
@@ -23,11 +26,18 @@ defmodule Api_Brecht_De_BoeckR0838388.OrderContext do
     Repo.get(Order, id)
   end
 
-  def update_order(%Order{} = order, %Order{} = current_order, attrs) do
+  def update_order(%Order{} = order, attrs) do
     order
-    |> Order.changeset(attrs)
+    |> Order.update_changeset(attrs)
     |> Repo.update()
   end
 
   def delete_order(%Order{} = order), do: Repo.delete(order)
+
+  def add_products_to_order(%Order{} = order, [product]), do: OrderProductContext.add_product_to_order(%{"order_id" => order.id, "product_id" => product["id"]})
+
+  def add_products_to_order(%Order{} = order, [ head | tail ]) do
+     OrderProductContext.add_product_to_order(%{"order_id" => order.id, "product_id" => head["id"]})
+     add_products_to_order(order, tail)
+  end
 end

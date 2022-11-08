@@ -17,7 +17,14 @@ defmodule Api_Brecht_De_BoeckR0838388.GamesContext do
   def list_games() do
     query =
       from(p in "product",
-      where: p.type == "Game"
+      where: p.type == "Game",
+      select: %{
+        id: p.id,
+        title: p.title,
+        description: p.description,
+        price: p.price,
+        picture_url: p.picture_url
+      }
       )
 
     Repo.all(query)
@@ -27,7 +34,7 @@ defmodule Api_Brecht_De_BoeckR0838388.GamesContext do
     Repo.get(Game, id)
   end
 
-  def update_game(%Game{} = game, %Game{} = current_game, attrs) do
+  def update_game(%Game{} = game, attrs) do
     game
     |> Game.changeset(attrs)
     |> Repo.update()

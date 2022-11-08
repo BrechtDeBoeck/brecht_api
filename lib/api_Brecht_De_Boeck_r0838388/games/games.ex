@@ -23,10 +23,9 @@ defmodule Api_Brecht_De_BoeckR0838388.GamesContext.Game do
     ])
     |> validate_required([
       :title,
-      :developer,
+      :description,
       :price,
-      :type,
-      :picture_url
+      :type
     ])
   end
 end

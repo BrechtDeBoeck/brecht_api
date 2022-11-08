@@ -25,6 +25,16 @@ defmodule Api_Brecht_De_BoeckR0838388.OrderContext.Order do
     |> put_date()
   end
 
+  def update_changeset(order, attrs) do
+    order
+    |> cast(attrs, [
+      :email
+    ])
+    |> validate_required([
+      :email
+    ])
+  end
+
   defp put_date(%{changes: %{date: _d}} = changeset), do: changeset
 
   defp put_date(changeset) do
