@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :api_Brecht_De_Boeck_r0838388, Api_Brecht_De_BoeckR0838388.Repo,
-  username: System.get_env("DB_USER"),
-  password: System.get_env("DB_PASSWORD"),
-  hostname: System.get_env("DB_HOST"),
-  database: System.get_env("DB_SCHEMA"),
+  username: "SOA",
+  password: "Y9xN1oA6RWn43R3Mc0to",
+  hostname: "84.192.118.116",
+  database: "SOA",
   port: 5432,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
