@@ -1,1 +1,1 @@
-web: /app/_build/prod/rel/api_Brecht_De_Boeck_r0838388/bin/api_Brecht_De_Boeck_r0838388 foreground
+web: mix phx.server

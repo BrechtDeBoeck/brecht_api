@@ -44,8 +44,7 @@ defmodule Api_Brecht_De_BoeckR0838388.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"},
-      {:distillery, "~> 2.0", warn_missing: false}
+      {:plug_cowboy, "~> 2.5"}
     ]
   end
 
